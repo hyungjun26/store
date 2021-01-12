@@ -23,7 +23,7 @@ public class Item {
     private String content;
     private Integer price;
     private String brandName;
-    private String registeredAt;
+    private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
@@ -37,6 +37,6 @@ public class Item {
     // LAZY = SELECT * FROM item where id = ? : 연관관계가 설정된 테이블에 대해서 select를 하지 않는다
 
     // EAGER = : 연관관계가 설정된 모든 테이블에 대해서 join하여 가져옴 (1:1 에서 추천 다른경우는 LAZY 추천)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-    private List<OrderDetail> orderDetailList;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+//    private List<OrderDetail> orderDetailList;
 }
