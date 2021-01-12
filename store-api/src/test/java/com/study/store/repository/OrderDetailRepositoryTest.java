@@ -24,14 +24,14 @@ class OrderDetailRepositoryTest {
     @Test
     @Rollback(value = false)
     public void create(){
-        OrderDetail orderDetail = new OrderDetail();
-
-        orderDetail.setCreatedAt(LocalDateTime.now());
-        orderDetail.setOrderGroupId(1L);
+//        OrderDetail orderDetail = new OrderDetail();
+//
+//        orderDetail.setCreatedAt(LocalDateTime.now());
+        // orderDetail.setOrderGroupId(1L);
         //orderDetail.setItemId(1L);
 
-        OrderDetail newOrder = orderDetailRepository.save(orderDetail);
-
-        Assertions.assertNotNull(newOrder);
+//        OrderDetail newOrder = orderDetailRepository.save(orderDetail);
+//
+//        Assertions.assertNotNull(newOrder);
     }
 }

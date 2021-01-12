@@ -41,14 +41,14 @@ public class UserRepositoryTest {
 
     @Test
     public void read(){
-        Optional<User> user = userRepository.findByAccount("User01");
-
-        user.ifPresent(selectUser->{
-            selectUser.getOrderDetailList().stream().forEach(detail->{
-                Item item = detail.getItem();
-                System.out.println(item);
-            });
-        });
+//        Optional<User> user = userRepository.findByAccount("User01");
+//
+//        user.ifPresent(selectUser->{
+//            selectUser.getOrderDetailList().stream().forEach(detail->{
+//                Item item = detail.getItem();
+//                System.out.println(item);
+//            });
+//        });
     }
 
     @Test
