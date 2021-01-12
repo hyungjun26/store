@@ -23,7 +23,7 @@ public class Item {
     private String content;
     private Integer price;
     private String brandName;
-    private String registeredAt;
+    private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;

@@ -49,6 +49,9 @@ public class UserRepositoryTest {
 //                System.out.println(item);
 //            });
 //        });
+
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1234-5678");
+        Assertions.assertNotNull(user);
     }
 
     @Test

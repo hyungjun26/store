@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,13 +27,25 @@ class ItemRepositoryTest {
     @Rollback(value = false)
     public void create(){
         Item item = new Item();
-        item.setName("맥북 프로");
-        item.setPrice(3500000);
-        item.setContent("2020 맥북 프로 16인치");
+//        item.setName("맥북 프로");
+//        item.setPrice(3500000);
+//        item.setContent("2020 맥북 프로 16인치");
+
+        item.setStatus("UNREGISTERED");
+        item.setName("아이패드 Air");
+        item.setTitle("아이패드 Air 128GB");
+        item.setContent("2021년형 아이패드 Air");
+        item.setPrice(970000);
+        item.setBrandName("APPLE");
+        item.setRegisteredAt(LocalDateTime.now());
+        item.setCreatedAt(LocalDateTime.now());
+        item.setCreatedBy("Partner01");
+        item.setPartnerId(1L);
 
         Item newItem = itemRepository.save(item);
 
         Assertions.assertNotNull(newItem);
+        Assertions.assertEquals(newItem.getName(), item.getName());
     }
 
     @Test
