@@ -50,8 +50,14 @@ public class UserRepositoryTest {
 //            });
 //        });
 
-        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1234-5678");
-        Assertions.assertNotNull(user);
+//        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1234-5678");
+//        user.getOrderGroup().stream().forEach(orderGroup -> {
+//            System.out.println(orderGroup.getRevName());
+//            System.out.println(orderGroup.getRevAddress());
+//            System.out.println(orderGroup.getTotalPrice());
+//            System.out.println(orderGroup.getTotalQuantity());
+//        });
+//        Assertions.assertNotNull(user);
     }
 
     @Test
