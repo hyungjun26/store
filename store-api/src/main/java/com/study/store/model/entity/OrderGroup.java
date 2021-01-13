@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-//@ToString(exclude = {"user", "orderDetailList"})
+@ToString(exclude = {"user", "orderDetailList"})
 public class OrderGroup {
 
     @Id
@@ -33,11 +33,11 @@ public class OrderGroup {
     private String createdBy;
     private LocalDateTime updatedAt;
     private String updatedBy;
-    private Long userId;
+    //private Long userId;
 
-    //@ManyToOne
-    //private User user;
+    @ManyToOne
+    private User user;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
-    //private List<OrderDetail> orderDetailList;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
+    private List<OrderDetail> orderDetailList;
 }

@@ -50,14 +50,27 @@ public class UserRepositoryTest {
 //            });
 //        });
 
-//        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1234-5678");
-//        user.getOrderGroup().stream().forEach(orderGroup -> {
-//            System.out.println(orderGroup.getRevName());
-//            System.out.println(orderGroup.getRevAddress());
-//            System.out.println(orderGroup.getTotalPrice());
-//            System.out.println(orderGroup.getTotalQuantity());
-//        });
-//        Assertions.assertNotNull(user);
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1234-5678");
+        user.getOrderGroupList().stream().forEach(orderGroup -> {
+            System.out.println("-------------------------------------");
+            System.out.println(orderGroup.getRevName());
+            System.out.println(orderGroup.getRevAddress());
+            System.out.println(orderGroup.getTotalPrice());
+            System.out.println(orderGroup.getTotalQuantity());
+
+            System.out.println("-------------------------------------");
+            orderGroup.getOrderDetailList().forEach(orderDetail -> {
+                System.out.println(orderDetail.getItem().getPartner().getName());
+                System.out.println(orderDetail.getItem().getPartner().getCategory().getTitle());
+                System.out.println(orderDetail.getItem().getName());
+                System.out.println(orderDetail.getItem().getPartner().getCallCenter());
+                System.out.println(orderDetail.getStatus());
+                System.out.println(orderDetail.getArrivalDate());
+
+
+            });
+        });
+        Assertions.assertNotNull(user);
     }
 
     @Test

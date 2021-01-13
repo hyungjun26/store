@@ -31,8 +31,9 @@ public class User {
     private LocalDateTime updatedAt;
     private String updatedBy;
 
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    //private List<OrderGroup> orderGroup;
+    // User 1 : N OrderGroup
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<OrderGroup> orderGroupList;
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 //    private List<OrderDetail> orderDetailList;
 }

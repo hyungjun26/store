@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ class OrderGroupRepositoryTest {
     private OrderGroupRepository orderGroupRepository;
 
     @Test
+    @Rollback(value = false)
     public void create(){
         OrderGroup orderGroup = new OrderGroup();
         orderGroup.setStatus("COMPLETE");
@@ -33,7 +35,7 @@ class OrderGroupRepositoryTest {
         orderGroup.setArrivalDate(LocalDateTime.now());
         orderGroup.setCreatedAt(LocalDateTime.now());
         orderGroup.setCreatedBy("Server");
-        orderGroup.setUserId(1L);
+        //orderGroup.setUserId(1L);
 
         OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
         Assertions.assertNotNull(newOrderGroup);
