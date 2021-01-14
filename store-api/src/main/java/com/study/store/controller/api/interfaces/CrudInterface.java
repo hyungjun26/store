@@ -2,12 +2,12 @@ package com.study.store.controller.api.interfaces;
 
 import com.study.store.model.network.Header;
 
-public interface CrudInterface {
-    Header create();
+public interface CrudInterface<Request, Response> {
+    Header<Response> create(Header<Request> request);
 
-    Header read(Long id);
+    Header<Response> read(Long id);
 
-    Header update();
+    Header<Response> update(Header<Request> request);
 
     Header delete(Long id);
 }
