@@ -30,17 +30,28 @@ public class UserRepositoryTest {
     @Test
     @Rollback(value = false)
     public void create(){
-        User user = new User();
+        // Chain Pattern
+        User user = new User().setAccount("User04").setPassword("1234");
 
-        user.setAccount("User02");
-        user.setPassword("1234");
-        user.setEmail("User02@gmail.com");
-        user.setPhoneNumber("010-1234-7890");
+//        user.setAccount("User02");
+//        user.setPassword("1234");
+//        user.setEmail("User02@gmail.com");
+//        user.setPhoneNumber("010-1234-7890");
 //        user.setCreatedAt(LocalDateTime.now());
 //        user.setCreatedBy("admin");
 
-        User newUser = userRepository.save(user);
+        User u = User.builder()
+                .account("User03")
+                .password("1234")
+                .status("REGISTERED")
+                .phoneNumber("010-1111-2323")
+                .email("User03@gmail.com")
+                .build();
+
+        User newUser = userRepository.save(u);
         System.out.println("newUser : " + newUser);
+
+
     }
 
     @Test
