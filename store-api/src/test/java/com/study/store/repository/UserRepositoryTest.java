@@ -1,5 +1,7 @@
 package com.study.store.repository;
 
+import com.study.store.component.LoginUserAuditorAware;
+import com.study.store.config.JpaConfig;
 import com.study.store.model.entity.Item;
 import com.study.store.model.entity.User;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -17,6 +20,7 @@ import java.util.Optional;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DisplayName("UserRepositoryTest")
+@Import({JpaConfig.class, LoginUserAuditorAware.class})
 public class UserRepositoryTest {
 
     // Dependency Injection (DI)
@@ -28,12 +32,12 @@ public class UserRepositoryTest {
     public void create(){
         User user = new User();
 
-        user.setAccount("User01");
+        user.setAccount("User02");
         user.setPassword("1234");
-        user.setEmail("User01@gmail.com");
-        user.setPhoneNumber("010-1234-5678");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
+        user.setEmail("User02@gmail.com");
+        user.setPhoneNumber("010-1234-7890");
+//        user.setCreatedAt(LocalDateTime.now());
+//        user.setCreatedBy("admin");
 
         User newUser = userRepository.save(user);
         System.out.println("newUser : " + newUser);
