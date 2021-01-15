@@ -1,4 +1,4 @@
-package com.study.store.controller.api.interfaces;
+package com.study.store.interfaces;
 
 import com.study.store.model.network.Header;
 
