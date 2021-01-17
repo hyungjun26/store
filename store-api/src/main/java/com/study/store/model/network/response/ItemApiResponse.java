@@ -1,0 +1,36 @@
+package com.study.store.model.network.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ItemApiResponse { // 상황 스펙에 따라 변화가 생길수 있기 때문에 request, response 를 분리하여 생성
+
+    private Long id;
+
+    private String status;
+
+    private String name;
+
+    private String title;
+
+    private String content;
+
+    private BigDecimal price;
+
+    private String brandName;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAt;
+
+    private Long partnerId;
+}

@@ -1,6 +1,6 @@
 package com.study.store.service;
 
-import com.study.store.controller.api.interfaces.CrudInterface;
+import com.study.store.interfaces.CrudInterface;
 import com.study.store.model.entity.User;
 import com.study.store.model.network.Header;
 import com.study.store.model.network.request.UserApiRequest;
