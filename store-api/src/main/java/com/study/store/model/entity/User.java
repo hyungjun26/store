@@ -1,5 +1,6 @@
 package com.study.store.model.entity;
 
+import com.study.store.model.enumclass.UserStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
@@ -25,12 +26,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String account;
+
     private String password;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     private String email;
+
     private String phoneNumber;
+
     private LocalDateTime registeredAt;
+
     private LocalDateTime unregisteredAt;
 
     @CreatedDate
