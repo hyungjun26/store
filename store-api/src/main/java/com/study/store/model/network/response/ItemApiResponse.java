@@ -1,5 +1,6 @@
 package com.study.store.model.network.response;
 
+import com.study.store.model.enumclass.ItemStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class ItemApiResponse { // 상황 스펙에 따라 변화가 생길수 �
 
     private Long id;
 
-    private String status;
+    private ItemStatus status;
 
     private String name;
 
