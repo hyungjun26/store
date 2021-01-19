@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryApiLogicService implements CrudInterface<CategoryApiRequest, CategoryApiResponse> {
-
-    @Autowired
-    private CategoryRepository categoryRepository;
+public class CategoryApiLogicService extends BaseService<CategoryApiRequest, CategoryApiResponse, Category> {
+//
+//    @Autowired
+//    private CategoryRepository categoryRepository;
 
     @Override
     public Header<CategoryApiResponse> create(Header<CategoryApiRequest> request) {
@@ -25,14 +25,14 @@ public class CategoryApiLogicService implements CrudInterface<CategoryApiRequest
                 .title(body.getTitle())
                 .build();
 
-        categoryRepository.save(category);
+        baseRepository.save(category);
 
         return response(category);
     }
 
     @Override
     public Header<CategoryApiResponse> read(Long id) {
-        return categoryRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(category -> response(category))
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -41,23 +41,23 @@ public class CategoryApiLogicService implements CrudInterface<CategoryApiRequest
     public Header<CategoryApiResponse> update(Header<CategoryApiRequest> request) {
         CategoryApiRequest body = request.getData();
                 
-        return categoryRepository.findById(body.getId())
+        return baseRepository.findById(body.getId())
                 .map(category -> {
                     category
                             .setType(body.getType())
                             .setTitle(body.getTitle());
                     return category;
                 })
-                .map(category -> categoryRepository.save(category))
+                .map(category -> baseRepository.save(category))
                 .map(category -> response(category))
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long id) {
-        return categoryRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(category -> {
-                    categoryRepository.delete(category);
+                    baseRepository.delete(category);
                     return Header.OK();
                 })
                 .orElseGet(() -> Header.ERROR("데이터 없음"));

@@ -1,6 +1,7 @@
 package com.study.store.controller.api;
 
 import com.study.store.controller.CrudController;
+import com.study.store.model.entity.User;
 import com.study.store.model.network.request.UserApiRequest;
 import com.study.store.model.network.response.UserApiResponse;
 import com.study.store.service.UserApiLogicService;
@@ -13,7 +14,7 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController extends CrudController<UserApiRequest, UserApiResponse> {
+public class UserApiController extends CrudController<UserApiRequest, UserApiResponse, User> {
 
     @Autowired
     private UserApiLogicService userApiLogicService;

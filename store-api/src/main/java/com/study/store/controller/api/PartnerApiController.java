@@ -1,6 +1,7 @@
 package com.study.store.controller.api;
 
 import com.study.store.controller.CrudController;
+import com.study.store.model.entity.Partner;
 import com.study.store.model.network.request.PartnerApiRequest;
 import com.study.store.model.network.response.PartnerApiResponse;
 import com.study.store.service.PartnerApiLogicService;
@@ -11,13 +12,13 @@ import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/api/partner")
-public class PartnerApiController extends CrudController<PartnerApiRequest, PartnerApiResponse> {
+public class PartnerApiController extends CrudController<PartnerApiRequest, PartnerApiResponse, Partner> {
 
-    @Autowired
-    private PartnerApiLogicService partnerApiLogicService;
-
-    @PostConstruct
-    public void init(){
-        this.baseService = partnerApiLogicService;
-    }
+//    @Autowired
+//    private PartnerApiLogicService partnerApiLogicService;
+//
+//    @PostConstruct
+//    public void init(){
+//        this.baseService = partnerApiLogicService;
+//    }
 }
