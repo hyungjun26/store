@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiRequest, OrderGroupApiResponse> {
-
-    @Autowired
-    private OrderGroupRepository orderGroupRepository;
-    
+public class OrderGroupApiLogicService extends BaseService<OrderGroupApiRequest, OrderGroupApiResponse, OrderGroup> {
+//
+//    @Autowired
+//    private OrderGroupRepository orderGroupRepository;
+//
     @Autowired
     private UserRepository userRepository;
 
@@ -39,7 +39,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
                 .user(userRepository.getOne(body.getUserId()))
                 .build();
 
-        OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
+        OrderGroup newOrderGroup = baseRepository.save(orderGroup);
 
         return response(newOrderGroup);
     }
@@ -47,7 +47,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
     @Override
     public Header<OrderGroupApiResponse> read(Long id) {
 
-        return orderGroupRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(orderGroup -> response(orderGroup))
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -57,7 +57,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
 
         OrderGroupApiRequest body = request.getData();
 
-        Optional<OrderGroup> optional = orderGroupRepository.findById(body.getId());
+        Optional<OrderGroup> optional = baseRepository.findById(body.getId());
 
         return optional
                 .map(orderGroup -> {
@@ -73,7 +73,7 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
                             .setUser(userRepository.getOne(body.getUserId()));
                     return  orderGroup;
                 })
-                .map(orderGroup -> orderGroupRepository.save(orderGroup))
+                .map(orderGroup -> baseRepository.save(orderGroup))
                 .map(orderGroup -> response(orderGroup))
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -81,9 +81,9 @@ public class OrderGroupApiLogicService implements CrudInterface<OrderGroupApiReq
     @Override
     public Header delete(Long id) {
                 
-        return orderGroupRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(orderGroup -> {
-                    orderGroupRepository.delete(orderGroup);
+                    baseRepository.delete(orderGroup);
                     return Header.OK();
                 })
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
