@@ -4,6 +4,7 @@ import com.study.store.component.LoginUserAuditorAware;
 import com.study.store.config.JpaConfig;
 import com.study.store.model.entity.Item;
 import com.study.store.model.entity.User;
+import com.study.store.model.enumclass.UserStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ public class UserRepositoryTest {
         User u = User.builder()
                 .account("User03")
                 .password("1234")
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber("010-1111-2323")
                 .email("User03@gmail.com")
                 .build();

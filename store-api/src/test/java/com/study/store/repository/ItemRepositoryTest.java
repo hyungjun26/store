@@ -31,11 +31,11 @@ class ItemRepositoryTest {
 //        item.setPrice(3500000);
 //        item.setContent("2020 맥북 프로 16인치");
 
-        item.setStatus("UNREGISTERED");
+        //item.setStatus();
         item.setName("아이패드 Air");
         item.setTitle("아이패드 Air 128GB");
         item.setContent("2021년형 아이패드 Air");
-        item.setPrice(970000);
+        //item.setPrice(970000);
         item.setBrandName("APPLE");
         item.setRegisteredAt(LocalDateTime.now());
         item.setCreatedAt(LocalDateTime.now());
