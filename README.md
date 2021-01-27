@@ -20,3 +20,12 @@ Store를 주제로 서버, 관리 페이지 개발 - JPA를 학습하고 추가�
 ## 시스템 구조
 
 ## 데이터베이스 설계
+- admin_user : 관리자 정보
+- partner : 제휴 파트너 정보
+- item : 상품 정보
+- category : 상품 카테고리 정보
+- order_group : 거래 정보
+- order_detail : 거래 상세 정보
+- user : 고객 정보
+
+![ERD](./images/STORE_ERD.jpg)
