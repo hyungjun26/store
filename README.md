@@ -69,7 +69,7 @@ java -jar store-0.0.1-SNAPSHOT.jar
 
 ## API 동작 구조
 
-![API](./images/API_FLOW.png)
+![API](./images/API.png)
 
 ## ERD
 - admin_user : 관리자 정보
