@@ -34,7 +34,8 @@ java -jar store-0.0.1-SNAPSHOT.jar
 ```
 
 ## REST API Reference 
-- 서버 테스트: <http://ec2-13-125-59-76.ap-northeast-2.compute.amazonaws.com/swagger-ui.html#/>
+- Swagger Doc: <http://ec2-13-125-59-76.ap-northeast-2.compute.amazonaws.com/swagger-ui.html#/>
+![API](./images/swagger.png)
 
 | Method | Mapping               | Description                |
 |--------|-----------------------|----------------------------|
