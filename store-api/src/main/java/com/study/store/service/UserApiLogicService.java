@@ -1,11 +1,13 @@
 package com.study.store.service;
 
+import com.study.store.component.JwtUtil;
 import com.study.store.interfaces.CrudInterface;
 import com.study.store.model.entity.User;
 import com.study.store.model.enumclass.UserStatus;
 import com.study.store.model.network.Header;
 import com.study.store.model.network.request.UserApiRequest;
 import com.study.store.model.network.response.UserApiResponse;
+import com.study.store.model.network.response.UserJwtResponse;
 import com.study.store.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.Optional;
 
 @Service // 서비스로 동작
 public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
@@ -75,6 +80,16 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
+    public Header<UserJwtResponse> login(String account, String password){
+        Optional<User> optional = userRepository.findByAccountAndPassword(account,password);
+        return optional.map(user -> {
+            JwtUtil jwtUtil = new JwtUtil();
+            String token = jwtUtil.createToken(user.getId(),user.getAccount());
+            return response(token);
+        })
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
+
     private Header<UserApiResponse> response(User user){
         UserApiResponse userApiResponse = UserApiResponse.builder()
                 .id(user.getId())
@@ -89,5 +104,13 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         // Header + data
 
         return Header.OK(userApiResponse);
+    }
+    private Header<UserJwtResponse> response(String token){
+        UserJwtResponse userJwtResponse = UserJwtResponse.builder()
+                .token(token)
+                .build();
+        // Header + data
+
+        return Header.OK(userJwtResponse);
     }
 }

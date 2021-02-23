@@ -27,7 +27,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("API VIEW")
                 .version("v1.0.0")
-                .description("API 문서 설명")
+                .description("Store")
                 .build();
     }
 }
