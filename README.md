@@ -4,7 +4,9 @@
 
 - [소개](#소개)
 
-- [개발환경](#개발환경)
+- [실행](#실행)
+
+- [Generic and Abstract](#generic-and-abstract)
 
 - [REST API Reference](#rest-api-reference)
 
@@ -30,6 +32,38 @@ cd store-jpa/store-api
 ```
 cd build/libs
 java -jar store-0.0.1-SNAPSHOT.jar
+```
+
+## Generic and Abstract
+ - 제네릭 적용으로 타입변환의 이점을 얻고 안정성과 작업 효율성을 개선
+ - 미 적용시 DTO에 대한 타입변환 또는 각 DTO에 매칭되도록 작성해야한다
+```
+public class Header<T> {
+    ...중략
+    // OK
+    public static <T> Header<T> OK(T data){
+        return (Header<T>) Header.builder()
+                ...데이터
+                .build();
+    }
+```
+
+- 추상화 적용으로 기본 작업(CRUD 등) 구현
+- 적용 전 : 기존 각 controller마다 인터페이스를 상속하여 CRUD를 반복적으로 정의(반복 작업으로 시간 소비)
+- 적용 후 : 반복 작업 감소 및 비즈니스 로직에 집중 가능(작업 효율 개선)
+```
+public abstract class CrudController<Request, Response, Entity> implements CrudInterface<Request, Response> {
+
+    @Autowired(required = false)
+    protected BaseService<Request, Response, Entity> baseService;
+
+    @Override
+    @PostMapping("")
+    public Header<Response> create(@RequestBody Header<Request> request) {
+        return baseService.create(request);
+    }
+    ..중략
+}
 ```
 
 ## REST API Reference 
